@@ -1,2 +1,4 @@
 # Devoir de XSLT
-Devoir de XSLT réalisé en 2026 dans le cadre du Master TNAH de l'Ecole Nationale des Chartes.
+Ce dépôt contient mon devoir final pour le cours de XSLT suivi dans le cadre du M2 TNAH de l'Ecole Nationale des Chartes pendant l'année scolaire 2025-2026.
+
+Ce projet est un encodage du premier chapitre de *Dracula* de Bram Stoker. Il est divisé en trois entrées dans le journal de Jonathan Harker, qui correspondent à trois encodages en XML-TEI. L'encodage est réalisé par moi-même, et inspiré par le projet *Encoding Correspondence. A Manual for Encoding Letters and Postcards in TEI-XML and DTABf*, réalisé par Stefan Dumont, Susanne Haaf and Sabine Seifert, dont le GitHub se trouve [ici](https://github.com/TEI-Correspondence-SIG/encoding-correspondence). La mise en page en HTML de ce devoir est inspirée par le projet [pepysdiary.com](www.pepysdiary.com) de Phil Gyford, qui permet aux internautes de naviguer à travers le journal de Samuel Pepys comme s'il était un blog.
