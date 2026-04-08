@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+	<teiHeader>
+		<fileDesc>
+			<titleStmt>
+				<title>Blogula - A YK2 Dracula blog</title>
+				
+				<respStmt>
+					<resp>created and encoded by</resp>
+					<persName>Béatrice Pascale</persName>
+					<note>Sample encoding done in the context of an assignment for the XSLT class of the M2 TNAH.</note>
+				</respStmt>
+				
+			</titleStmt>
+			
+			<publicationStmt>
+				<publisher>Ecole nationale des Chartes</publisher>
+				<pubPlace> 65, Rue de Richelieu, <placeName>Paris</placeName></pubPlace>
+				<date when="2026-04"/>
+				
+			</publicationStmt>
+			
+			<sourceDesc>
+				<bibl>
+					<title>Dracula</title>
+					<author>Bram Stoker</author>
+					<publisher>Grosset &amp; Dunlap</publisher>
+					<pubPlace> The Country Life Press, Garden City, <placeName>New York</placeName></pubPlace>
+					<date when="1897"/>
+					<!-- J'ai utilisé la version de Dracula du Projet Gutenberg pour cet encodage, je joins le lien ci-dessous -->
+					<idno type="url">https://gutenberg.org/files/345/345-h/345-h.htm</idno>
+				</bibl>
+				
+				<listPerson>
+					<person></person>
+				</listPerson>
+				
+				<listPlace>
+					<place></place>
+				</listPlace>
+				
+			</sourceDesc>
+			
+		</fileDesc>
+	</teiHeader>
+
+	<text>
+		<body xml:id="ch1">
+
+			<div type="header">
+				<head type="chapter_title">Chapter 1</head>
+				<div xml:id="chapter_subtitle">
+					<p n="1"><persName ref="jonathan_001">Jonathan Harker</persName>'s Journal</p>
+					<!--Mettre en italique lors de la transformation-->
+					<p n="2">(Kept in shorthand.)</p>
+				</div>
+			</div>
+
+			<div type="entry" xml:id="ch1-e1">
+				<dateline> 3 May. <placeName>Bistritz</placeName></dateline>
+				
+				<p n="1">Left Munich at 8:35 P. M., on <date>1st May</date>, arriving at <placeName>Vienna</placeName> 
+					early next morning; should have arrived at 6:46, but train was an hour late. 
+					<placeName>Buda-Pesth</placeName> seems a wonderful place, from the glimpse which I got of it 
+					from the train and the little I could walk through the streets. I feared to go very far from 
+					the station, as we had arrived late and would start as near the correct time as possible. 
+					The impression I had was that we were leaving the West and entering the East; the most western 
+					of splendid bridges over the <geogName>Danube</geogName>, which is here of noble width and depth,
+					took us among the traditions of Turkish rule.</p>
+				
+				
+				<p n="2">We left in pretty good time, and came after nightfall to <placeName>Klausenburgh</placeName>. Here I stopped for 
+					the night at the Hotel Royale. I had for dinner, or rather supper, a chicken done up some way 
+					with red pepper, which was very good but thirsty. (Mem., get recipe for <persName ref="mina_001">Mina</persName>.) I asked the waiter,
+					and he said it was called “paprika hendl,” and that, as it was a national dish, I should be able 
+					to get it anywhere along <geogName>the Carpathians</geogName>. I found my smattering of <lang>German</lang> very useful here; indeed,
+					I don’t know how I should be able to get on without it.</p>
+				
+				<p n="3">Having had some time at my disposal when in <placeName>London</placeName>, I had visited the <placeName>British Museum</placeName>,
+					and made search among the books and maps in the library regarding <placeName>Transylvania</placeName>; 
+					it had struck me that some foreknowledge of the country could hardly fail to have 
+					some importance in dealing with a nobleman of that country. I find that the district he 
+					named is in the extreme east of the country, just on the borders of three states, <placeName>Transylvania</placeName>, 
+					<placeName>Moldavia</placeName> and <placeName>Bukovina</placeName>, in the midst of <geogName>the Carpathian mountains</geogName>; 
+					one of the wildest and least known portions of <placeName>Europe</placeName>. I was not able to light on any map or 
+					work giving the exact locality of the <placeName>Castle Dracula</placeName>, as there are no maps of this country as
+					yet to compare with our own Ordnance Survey maps; but I found that <placeName>Bistritz</placeName>, the post town named
+					by <persName ref="dracula_001">Count Dracula</persName>, is a fairly well-known place. I shall enter here some of my notes, as they may 
+					refresh my memory when I talk over my travels with <persName ref="mina_001">Mina</persName>.</p>
+				
+				<p n="4">In the population of <placeName>Transylvania</placeName> there are four distinct nationalities: Saxons in the South, and mixed 
+					with them the Wallachs, who are the descendants of the Dacians; Magyars in the West, and Szekelys in the East 
+					and North. I am going among the latter, who claim to be descended from Attila and the Huns. This may be so, 
+					for when the Magyars conquered the country in the eleventh century they found the Huns settled in it. 
+					I read that every known superstition in the world is gathered into the horseshoe of the Carpathians, 
+					as if it were the centre of some sort of imaginative whirlpool; if so my stay may be very interesting. 
+					(Mem., I must ask the Count all about them.)</p>
+				
+				<closer>
+					<salute>I am with all my Heart<lb/>Dear Friend<lb/>Yours most
+						faithfully</salute>
+					<signed>Werlhof</signed>
+					<address>
+						<addrLine>à Monsieur</addrLine>
+						<addrLine>Monsieur Haller</addrLine>
+						<addrLine>conseiller aulique et<lb/>professeur roïal</addrLine>
+						<addrLine>à<lb/>Göttingen</addrLine>
+					</address>
+				</closer>
+			</div>
+
+
+		</body>
+	</text>
+</TEI>

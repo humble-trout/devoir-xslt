@@ -1,0 +1,940 @@
+/* Block placement */
+:root {
+  font-size: 20px;
+}
+
+@font-face {
+  font-family: Gothic War;
+  src:url(fonts/Gothic_War.otf);
+}
+
+@font-face {
+  font-family: Charming;
+  src:url(fonts/a_charming_font/Achafont.ttf);
+}
+
+@font-face {
+  font-family: Bloodlust;
+  src:url(fonts/bloodlust/bloodlust.ttf);
+}
+
+/* Curseur emoji vampire */
+html {
+  cursor: url('data:image/svg+xml;charset=utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" height="30" width="30"><text y="28" font-size="32">🧛</text><path d="M0,2 L0,0 L2,0" fill="red" /></svg>'), auto;
+}
+
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Animation du titre */
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(-20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+h1.main-title {
+  font-family: "Bloodlust";
+  font-size: clamp(3rem, 10vw, 6rem); /* Responsive font sizing */
+  color: red;
+  text-align: center;
+  margin: 20px 0;
+  -webkit-text-stroke-width: 0.005em;
+  -webkit-text-stroke-color: white;
+  margin-bottom: 5%;
+  
+  /* Shared animation with the form */
+  opacity: 0;
+  animation: fadeIn 0.8s 0.25s ease-out forwards;
+  position: relative;
+  z-index: 10;
+}
+
+h1:hover.main-title {
+    transform: scale(1.2);
+}
+
+body, input {
+  font-family: "Gothic War", sans-serif;
+  font-size: 1em;
+}
+
+/*Fond noir. J'ai abandonné l'idée de mettre une image mais je garde les paramètres que j'avais déterminé lorsque j'ai mis un GIF en image de fond, au cas où */
+body {
+  background-color:black;
+  background-repeat: no-repeat;
+  background-size: 100% 100% ;
+  background-attachment: fixed;
+  background-position: top;
+}
+
+input {
+  position: absolute;
+}
+
+input[type=radio] {
+  top: -10%;
+  left: -10%;
+}
+input[type=radio]:checked ~ input[type=reset] {
+  visibility: visible;
+}
+
+/* Bouton Return */
+input[type=reset] {
+  background-color: #c22;
+  border: 0;
+  border-radius: 0;
+  color: #fff;
+  padding: 0.5em 0.75em;
+  bottom: 5%;
+  left: 50%;
+  visibility: hidden;
+  transform: translateX(-50%);
+  transition: background-color 0.2s;
+  -webkit-appearance: none;
+  appearance: none;
+}
+input[type=reset]:hover, input[type=reset]:focus {
+  background-color: #cd2222;
+}
+input[type=reset]:active {
+  background-color: #cb2222;
+}
+
+.container {
+  /* Animation sync */
+  animation: fadeIn 0.8s 0.5s ease-out forwards;
+  display: flex;
+  flex-direction: column; /* Pushes content vertically */
+  align-items: center;
+  justify-content: center;
+  
+  opacity: 0;
+  position: relative; /* Changed from absolute to allow h1 to push it down */
+  width: 100%;
+  min-height: 80vh; 
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  padding-bottom: 50px; /* Space for the return button */
+}
+
+/* Etagère */
+.surface {
+  display: block;
+  width: 384px;
+  height: 224px;
+  margin: auto;
+  transform-style: preserve-3d;
+  /* Adjusting translation for better vertical centering in the responsive flow */
+  transform: translateY(50px) rotateX(80deg) rotateZ(0deg);
+  transition: transform 0.25s;
+  will-change: transform;
+}
+
+/* Pour les petits écrans */
+@media (max-width: 400px) {
+  .surface {
+    transform: scale(0.8) translateY(50px) rotateX(80deg) rotateZ(0deg);
+  }
+}
+
+.block {
+  display: none;
+  transform-style: preserve-3d;
+  position: absolute;
+  bottom: 0;
+}
+
+.block-inner div {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  position: absolute;
+  width: 16px;
+  height: 16px;
+}
+
+.block-inner {
+  position: relative;
+  width: 16px;
+  transition: transform 0.25s linear;
+  transform-style: preserve-3d;
+  transform: rotateX(-90deg) translateZ(16px);
+}
+
+.back {
+  transform: translateZ(-16px) rotateY(180deg);
+}
+
+.left {
+  transform-origin: center left;
+  transform: rotateY(270deg) translateX(-16px);
+}
+
+.right {
+  transform-origin: top right;
+}
+.right::after, .right div {
+  top: 0;
+  left: 0;
+  transform-origin: 0 50%;
+  transition: transform 0.25s 0.25s linear;
+}
+.right::after {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  /* Couleur du titre du premier livre */
+  color: #fff;
+  font-size: 2em;
+  line-height: 24px;
+  text-align: center;
+  padding: 20% 5%;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+.right div {
+  width: 100%;
+  height: 100%;
+}
+
+.top, .bottom {
+  transform-origin: top center;
+}
+
+.spine, .right::after {
+  font-family: "Gothic War", serif;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+}
+
+.contents h1 {
+  font-family: "Charming";
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+}
+
+.spine {
+  background: transparent;
+  color: #ccc;
+  font-size: 1em;
+  line-height: 12px;
+  top: 0;
+  left: 0;
+  transform: rotate(90deg) translate(12px, -50%);
+  white-space: nowrap;
+  width: 0;
+  height: 16px;
+}
+
+.cover {
+  background-color: #fff;
+  z-index: 1;
+}
+
+.contents {
+  font-size: 0.5em;
+  padding: 16px;
+}
+.contents h1 {
+  font-size: 2em;
+}
+.contents p {
+  font-family: "Charming", serif;
+  font-size: 2em;
+}
+
+.b1 {
+  display: block;
+  transform: translate3d(16px, -224px, 16px);
+}
+.b1 .block-inner > div {
+  background-color: #441e12;
+}
+.b1 .block-inner > div.top, .b1 .block-inner > div.bottom {
+  width: 352px;
+  height: 224px;
+}
+.b1 .block-inner > div.top {
+  transform: rotateX(-90deg) translateY(-208px);
+}
+.b1 .block-inner > div.bottom {
+  transform: rotateX(-90deg) translateY(-208px) translateZ(16px);
+}
+.b1 .block-inner > div.front::before, .b1 .block-inner > div.back::before, .b1 .block-inner > div.left::before, .b1 .block-inner > div.right::before {
+  background-color: #000;
+  content: "";
+  width: 100%;
+  height: 100%;
+}
+.b1 .block-inner > div.front, .b1 .block-inner > div.back {
+  width: 352px;
+  height: 16px;
+}
+.b1 .block-inner > div.front::before, .b1 .block-inner > div.back::before {
+  opacity: 0.2;
+}
+.b1 .block-inner > div.front {
+  transform: translateZ(208px);
+}
+.b1 .block-inner > div.left, .b1 .block-inner > div.right {
+  width: 224px;
+  height: 16px;
+}
+.b1 .block-inner > div.left::before, .b1 .block-inner > div.right::before {
+  opacity: 0.4;
+}
+.b1 .block-inner > div.right {
+  transform: rotateY(-270deg) translate3d(16px, 0, 128px);
+  transform-style: preserve-3d;
+}
+
+.b2 {
+  display: block;
+  transform: translate3d(0px, -224px, 288px);
+}
+.b2 .block-inner > div {
+  background-color: #441e12;
+}
+.b2 .block-inner > div.top, .b2 .block-inner > div.bottom {
+  width: 384px;
+  height: 16px;
+}
+.b2 .block-inner > div.top {
+  transform: rotateX(-90deg) translateY(0px);
+}
+.b2 .block-inner > div.bottom {
+  transform: rotateX(-90deg) translateY(0px) translateZ(288px);
+}
+.b2 .block-inner > div.front::before, .b2 .block-inner > div.back::before, .b2 .block-inner > div.left::before, .b2 .block-inner > div.right::before {
+  background-color: #000;
+  content: "";
+  width: 100%;
+  height: 100%;
+}
+.b2 .block-inner > div.front, .b2 .block-inner > div.back {
+  width: 384px;
+  height: 288px;
+}
+.b2 .block-inner > div.front::before, .b2 .block-inner > div.back::before {
+  opacity: 0.2;
+}
+.b2 .block-inner > div.front {
+  transform: translateZ(0px);
+}
+.b2 .block-inner > div.left, .b2 .block-inner > div.right {
+  width: 16px;
+  height: 288px;
+}
+.b2 .block-inner > div.left::before, .b2 .block-inner > div.right::before {
+  opacity: 0.4;
+}
+.b2 .block-inner > div.right {
+  transform: rotateY(-270deg) translate3d(16px, 0, 368px);
+  transform-style: preserve-3d;
+}
+
+.b3 {
+  display: block;
+  transform: translate3d(0px, -208px, 288px);
+}
+.b3 .block-inner > div {
+  background-color: #441e12;
+}
+.b3 .block-inner > div.top, .b3 .block-inner > div.bottom {
+  width: 16px;
+  height: 208px;
+}
+.b3 .block-inner > div.top {
+  transform: rotateX(-90deg) translateY(-192px);
+}
+.b3 .block-inner > div.bottom {
+  transform: rotateX(-90deg) translateY(-192px) translateZ(288px);
+}
+.b3 .block-inner > div.front::before, .b3 .block-inner > div.back::before, .b3 .block-inner > div.left::before, .b3 .block-inner > div.right::before {
+  background-color: #000;
+  content: "";
+  width: 100%;
+  height: 100%;
+}
+.b3 .block-inner > div.front, .b3 .block-inner > div.back {
+  width: 16px;
+  height: 288px;
+}
+.b3 .block-inner > div.front::before, .b3 .block-inner > div.back::before {
+  opacity: 0.2;
+}
+.b3 .block-inner > div.front {
+  transform: translateZ(192px);
+}
+.b3 .block-inner > div.left, .b3 .block-inner > div.right {
+  width: 208px;
+  height: 288px;
+}
+.b3 .block-inner > div.left::before, .b3 .block-inner > div.right::before {
+  opacity: 0.4;
+}
+.b3 .block-inner > div.right {
+  transform: rotateY(-270deg) translate3d(16px, 0, -192px);
+  transform-style: preserve-3d;
+}
+
+.b4 {
+  display: block;
+  transform: translate3d(368px, -208px, 288px);
+}
+.b4 .block-inner > div {
+  background-color: #441e12;
+}
+.b4 .block-inner > div.top, .b4 .block-inner > div.bottom {
+  width: 16px;
+  height: 208px;
+}
+.b4 .block-inner > div.top {
+  transform: rotateX(-90deg) translateY(-192px);
+}
+.b4 .block-inner > div.bottom {
+  transform: rotateX(-90deg) translateY(-192px) translateZ(288px);
+}
+.b4 .block-inner > div.front::before, .b4 .block-inner > div.back::before, .b4 .block-inner > div.left::before, .b4 .block-inner > div.right::before {
+  background-color: #000;
+  content: "";
+  width: 100%;
+  height: 100%;
+}
+.b4 .block-inner > div.front, .b4 .block-inner > div.back {
+  width: 16px;
+  height: 288px;
+}
+.b4 .block-inner > div.front::before, .b4 .block-inner > div.back::before {
+  opacity: 0.2;
+}
+.b4 .block-inner > div.front {
+  transform: translateZ(192px);
+}
+.b4 .block-inner > div.left, .b4 .block-inner > div.right {
+  width: 208px;
+  height: 288px;
+}
+.b4 .block-inner > div.left::before, .b4 .block-inner > div.right::before {
+  opacity: 0.4;
+}
+.b4 .block-inner > div.right {
+  transform: rotateY(-270deg) translate3d(16px, 0, -192px);
+  transform-style: preserve-3d;
+}
+
+.b5 {
+  display: block;
+  transform: translate3d(0px, -224px, 304px);
+}
+.b5 .block-inner > div {
+  background-color: #441e12;
+}
+.b5 .block-inner > div.top, .b5 .block-inner > div.bottom {
+  width: 384px;
+  height: 224px;
+}
+.b5 .block-inner > div.top {
+  transform: rotateX(-90deg) translateY(-208px);
+}
+.b5 .block-inner > div.bottom {
+  transform: rotateX(-90deg) translateY(-208px) translateZ(16px);
+}
+.b5 .block-inner > div.front::before, .b5 .block-inner > div.back::before, .b5 .block-inner > div.left::before, .b5 .block-inner > div.right::before {
+  background-color: #000;
+  content: "";
+  width: 100%;
+  height: 100%;
+}
+.b5 .block-inner > div.front, .b5 .block-inner > div.back {
+  width: 384px;
+  height: 16px;
+}
+.b5 .block-inner > div.front::before, .b5 .block-inner > div.back::before {
+  opacity: 0.2;
+}
+.b5 .block-inner > div.front {
+  transform: translateZ(208px);
+}
+.b5 .block-inner > div.left, .b5 .block-inner > div.right {
+  width: 224px;
+  height: 16px;
+}
+.b5 .block-inner > div.left::before, .b5 .block-inner > div.right::before {
+  opacity: 0.4;
+}
+.b5 .block-inner > div.right {
+  transform: rotateY(-270deg) translate3d(16px, 0, 160px);
+  transform-style: preserve-3d;
+}
+
+.b6 {
+  display: block;
+  transform: translate3d(16px, -208px, 240px);
+}
+.b6 .block-inner > div {
+  background-color: #c00000;
+}
+.b6 .block-inner > div.top, .b6 .block-inner > div.bottom {
+  width: 32px;
+  height: 176px;
+}
+.b6 .block-inner > div.top {
+  transform: rotateX(-90deg) translateY(-160px);
+}
+.b6 .block-inner > div.bottom {
+  transform: rotateX(-90deg) translateY(-160px) translateZ(224px);
+}
+.b6 .block-inner > div.front::before, .b6 .block-inner > div.back::before, .b6 .block-inner > div.left::before, .b6 .block-inner > div.right::before {
+  background-color: #000;
+  content: "";
+  width: 100%;
+  height: 100%;
+}
+.b6 .block-inner > div.front, .b6 .block-inner > div.back {
+  width: 32px;
+  height: 224px;
+}
+.b6 .block-inner > div.front::before, .b6 .block-inner > div.back::before {
+  opacity: 0.2;
+}
+.b6 .block-inner > div.front {
+  transform: translateZ(160px);
+}
+.b6 .block-inner > div.left, .b6 .block-inner > div.right {
+  width: 176px;
+  height: 224px;
+}
+.b6 .block-inner > div.left::before, .b6 .block-inner > div.right::before {
+  opacity: 0;
+}
+.b6 .block-inner > div.right {
+  transform: rotateY(-270deg) translate3d(16px, 0, -144px);
+  transform-style: preserve-3d;
+  background-color: #fff;
+}
+.b6 .block-inner > div.right::after {
+  background-color: #c00000;
+  content: attr(data-title);
+}
+.b6 .block-inner > div.top, .b6 .block-inner > div.back, .b6 .block-inner > div.bottom {
+  background-color: #fff;
+  background-image: repeating-linear-gradient(90deg, transparent, transparent 21%, #aaa 21%, #aaa 25%, transparent 25%, transparent 46%, #aaa 46%, #aaa 50%, transparent 50%);
+  background-size: 16px 16px;
+}
+
+.b7 {
+  display: block;
+  transform: translate3d(48px, -208px, 256px);
+}
+.b7 .block-inner > div {
+  background-color: #3F1717;
+}
+.b7 .block-inner > div.top, .b7 .block-inner > div.bottom {
+  width: 32px;
+  height: 176px;
+}
+.b7 .block-inner > div.top {
+  transform: rotateX(-90deg) translateY(-160px);
+}
+.b7 .block-inner > div.bottom {
+  transform: rotateX(-90deg) translateY(-160px) translateZ(240px);
+}
+.b7 .block-inner > div.front::before, .b7 .block-inner > div.back::before, .b7 .block-inner > div.left::before, .b7 .block-inner > div.right::before {
+  background-color: #000;
+  content: "";
+  width: 100%;
+  height: 100%;
+}
+.b7 .block-inner > div.front, .b7 .block-inner > div.back {
+  width: 32px;
+  height: 240px;
+}
+.b7 .block-inner > div.front::before, .b7 .block-inner > div.back::before {
+  opacity: 0.2;
+}
+.b7 .block-inner > div.front {
+  transform: translateZ(160px);
+}
+.b7 .block-inner > div.left, .b7 .block-inner > div.right {
+  width: 176px;
+  height: 240px;
+}
+.b7 .block-inner > div.left::before, .b7 .block-inner > div.right::before {
+  opacity: 0;
+}
+.b7 .block-inner > div.right {
+  transform: rotateY(-270deg) translate3d(16px, 0, -144px);
+  transform-style: preserve-3d;
+  background-color: #fff;
+}
+.b7 .block-inner > div.right::after {
+  background-color: #3F1717;
+  content: attr(data-title);
+}
+.b7 .block-inner > div.top, .b7 .block-inner > div.back, .b7 .block-inner > div.bottom {
+  background-color: #fff;
+  background-image: repeating-linear-gradient(90deg, transparent, transparent 21%, #aaa 21%, #aaa 25%, transparent 25%, transparent 46%, #aaa 46%, #aaa 50%, transparent 50%);
+  background-size: 16px 16px;
+}
+
+.b8 {
+  display: block;
+  transform: translate3d(80px, -192px, 272px);
+}
+.b8 .block-inner > div {
+  background-color: #bf3e22;
+}
+.b8 .block-inner > div.top, .b8 .block-inner > div.bottom {
+  width: 32px;
+  height: 160px;
+}
+.b8 .block-inner > div.top {
+  transform: rotateX(-90deg) translateY(-144px);
+}
+.b8 .block-inner > div.bottom {
+  transform: rotateX(-90deg) translateY(-144px) translateZ(256px);
+}
+.b8 .block-inner > div.front::before, .b8 .block-inner > div.back::before, .b8 .block-inner > div.left::before, .b8 .block-inner > div.right::before {
+  background-color: #000;
+  content: "";
+  width: 100%;
+  height: 100%;
+}
+.b8 .block-inner > div.front, .b8 .block-inner > div.back {
+  width: 32px;
+  height: 256px;
+}
+.b8 .block-inner > div.front::before, .b8 .block-inner > div.back::before {
+  opacity: 0.2;
+}
+.b8 .block-inner > div.front {
+  transform: translateZ(144px);
+}
+.b8 .block-inner > div.left, .b8 .block-inner > div.right {
+  width: 160px;
+  height: 256px;
+}
+.b8 .block-inner > div.left::before, .b8 .block-inner > div.right::before {
+  opacity: 0;
+}
+.b8 .block-inner > div.right {
+  transform: rotateY(-270deg) translate3d(16px, 0, -128px);
+  transform-style: preserve-3d;
+  background-color: #fff;
+}
+.b8 .block-inner > div.right::after {
+  background-color: #bf3e22;
+  content: attr(data-title);
+}
+.b8 .block-inner > div.top, .b8 .block-inner > div.back, .b8 .block-inner > div.bottom {
+  background-color: #fff;
+  background-image: repeating-linear-gradient(90deg, transparent, transparent 21%, #aaa 21%, #aaa 25%, transparent 25%, transparent 46%, #aaa 46%, #aaa 50%, transparent 50%);
+  background-size: 16px 16px;
+}
+
+.b9 {
+  display: block;
+  transform: translate3d(112px, -192px, 240px);
+}
+.b9 .block-inner > div {
+  background-color: #0e4326;
+}
+.b9 .block-inner > div.top, .b9 .block-inner > div.bottom {
+  width: 32px;
+  height: 160px;
+}
+.b9 .block-inner > div.top {
+  transform: rotateX(-90deg) translateY(-144px);
+}
+.b9 .block-inner > div.bottom {
+  transform: rotateX(-90deg) translateY(-144px) translateZ(224px);
+}
+.b9 .block-inner > div.front::before, .b9 .block-inner > div.back::before, .b9 .block-inner > div.left::before, .b9 .block-inner > div.right::before {
+  background-color: #000;
+  content: "";
+  width: 100%;
+  height: 100%;
+}
+.b9 .block-inner > div.front, .b9 .block-inner > div.back {
+  width: 32px;
+  height: 224px;
+}
+.b9 .block-inner > div.front::before, .b9 .block-inner > div.back::before {
+  opacity: 0.2;
+}
+.b9 .block-inner > div.front {
+  transform: translateZ(144px);
+}
+.b9 .block-inner > div.left, .b9 .block-inner > div.right {
+  width: 160px;
+  height: 224px;
+}
+.b9 .block-inner > div.left::before, .b9 .block-inner > div.right::before {
+  opacity: 0;
+}
+.b9 .block-inner > div.right {
+  transform: rotateY(-270deg) translate3d(16px, 0, -128px);
+  transform-style: preserve-3d;
+  background-color: #fff;
+}
+.b9 .block-inner > div.right::after {
+  background-color: #0e4326;
+  content: attr(data-title);
+}
+.b9 .block-inner > div.top, .b9 .block-inner > div.back, .b9 .block-inner > div.bottom {
+  background-color: #fff;
+  background-image: repeating-linear-gradient(90deg, transparent, transparent 21%, #aaa 21%, #aaa 25%, transparent 25%, transparent 46%, #aaa 46%, #aaa 50%, transparent 50%);
+  background-size: 16px 16px;
+}
+
+.b10 {
+  display: block;
+  transform: translate3d(144px, -208px, 256px);
+}
+.b10 .block-inner > div {
+  background-color: #000050 ;
+}
+.b10 .block-inner > div.top, .b10 .block-inner > div.bottom {
+  width: 32px;
+  height: 176px;
+}
+.b10 .block-inner > div.top {
+  transform: rotateX(-90deg) translateY(-160px);
+}
+.b10 .block-inner > div.bottom {
+  transform: rotateX(-90deg) translateY(-160px) translateZ(240px);
+}
+.b10 .block-inner > div.front::before, .b10 .block-inner > div.back::before, .b10 .block-inner > div.left::before, .b10 .block-inner > div.right::before {
+  background-color: #000;
+  content: "";
+  width: 100%;
+  height: 100%;
+}
+.b10 .block-inner > div.front, .b10 .block-inner > div.back {
+  width: 32px;
+  height: 240px;
+}
+.b10 .block-inner > div.front::before, .b10 .block-inner > div.back::before {
+  opacity: 0.2;
+}
+.b10 .block-inner > div.front {
+  transform: translateZ(160px);
+}
+.b10 .block-inner > div.left, .b10 .block-inner > div.right {
+  width: 176px;
+  height: 240px;
+}
+.b10 .block-inner > div.left::before, .b10 .block-inner > div.right::before {
+  opacity: 0;
+}
+.b10 .block-inner > div.right {
+  transform: rotateY(-270deg) translate3d(16px, 0, -144px);
+  transform-style: preserve-3d;
+  background-color: #fff;
+}
+.b10 .block-inner > div.right::after {
+  background-color: #000050 ;
+  content: attr(data-title);
+}
+.b10 .block-inner > div.top, .b10 .block-inner > div.back, .b10 .block-inner > div.bottom {
+  background-color: #fff;
+  background-image: repeating-linear-gradient(90deg, transparent, transparent 21%, #aaa 21%, #aaa 25%, transparent 25%, transparent 46%, #aaa 46%, #aaa 50%, transparent 50%);
+  background-size: 16px 16px;
+}
+
+.b11 {
+  display: block;
+  transform: translate3d(176px, -208px, 272px);
+}
+.b11 .block-inner > div {
+  background-color: #003b3d;
+}
+.b11 .block-inner > div.top, .b11 .block-inner > div.bottom {
+  width: 32px;
+  height: 176px;
+}
+.b11 .block-inner > div.top {
+  transform: rotateX(-90deg) translateY(-160px);
+}
+.b11 .block-inner > div.bottom {
+  transform: rotateX(-90deg) translateY(-160px) translateZ(256px);
+}
+.b11 .block-inner > div.front::before, .b11 .block-inner > div.back::before, .b11 .block-inner > div.left::before, .b11 .block-inner > div.right::before {
+  background-color: #000;
+  content: "";
+  width: 100%;
+  height: 100%;
+}
+.b11 .block-inner > div.front, .b11 .block-inner > div.back {
+  width: 32px;
+  height: 256px;
+}
+.b11 .block-inner > div.front::before, .b11 .block-inner > div.back::before {
+  opacity: 0.2;
+}
+.b11 .block-inner > div.front {
+  transform: translateZ(160px);
+}
+.b11 .block-inner > div.left, .b11 .block-inner > div.right {
+  width: 176px;
+  height: 256px;
+}
+.b11 .block-inner > div.left::before, .b11 .block-inner > div.right::before {
+  opacity: 0;
+}
+.b11 .block-inner > div.right {
+  transform: rotateY(-270deg) translate3d(16px, 0, -144px);
+  transform-style: preserve-3d;
+  background-color: #fff;
+}
+.b11 .block-inner > div.right::after {
+  background-color: #003b3d;
+  content: attr(data-title);
+}
+.b11 .block-inner > div.top, .b11 .block-inner > div.back, .b11 .block-inner > div.bottom {
+  background-color: #fff;
+  background-image: repeating-linear-gradient(90deg, transparent, transparent 21%, #aaa 21%, #aaa 25%, transparent 25%, transparent 46%, #aaa 46%, #aaa 50%, transparent 50%);
+  background-size: 16px 16px;
+}
+
+
+/*Animation de l'ouverture et du visionnage de livre */
+label:nth-child(n+6):nth-child(-n+17):hover .block-inner {
+  transform: rotateX(-90deg) translateZ(64px);
+}
+
+input[type=radio]:nth-child(1) ~ .surface label:nth-child(6) .block-inner {
+  animation: returnBook 0.5s linear;
+}
+
+input[type=radio]:nth-child(1):checked ~ .surface {
+  transform: translate(41.6666666667%, 152px) rotateX(80deg) rotateZ(0deg);
+}
+input[type=radio]:nth-child(1):checked ~ .surface label:nth-child(6) .block-inner {
+  animation: viewBook 0.5s 1s linear forwards;
+}
+input[type=radio]:nth-child(1):checked ~ .surface label:nth-child(6) .block-inner:hover .right::after, input[type=radio]:nth-child(1):checked ~ .surface label:nth-child(6) .block-inner:hover .cover {
+  transform: rotateY(-135deg);
+}
+
+input[type=radio]:nth-child(2) ~ .surface label:nth-child(7) .block-inner {
+  animation: returnBook 0.5s linear;
+}
+
+input[type=radio]:nth-child(2):checked ~ .surface {
+  transform: translate(33.3333333333%, 152px) rotateX(80deg) rotateZ(0deg);
+}
+input[type=radio]:nth-child(2):checked ~ .surface label:nth-child(7) .block-inner {
+  animation: viewBook 0.5s 1s linear forwards;
+}
+input[type=radio]:nth-child(2):checked ~ .surface label:nth-child(7) .block-inner:hover .right::after, input[type=radio]:nth-child(2):checked ~ .surface label:nth-child(7) .block-inner:hover .cover {
+  transform: rotateY(-135deg);
+}
+
+input[type=radio]:nth-child(3) ~ .surface label:nth-child(8) .block-inner {
+  animation: returnBook 0.5s linear;
+}
+
+input[type=radio]:nth-child(3):checked ~ .surface {
+  transform: translate(25%, 152px) rotateX(80deg) rotateZ(0deg);
+}
+input[type=radio]:nth-child(3):checked ~ .surface label:nth-child(8) .block-inner {
+  animation: viewBook 0.5s 1s linear forwards;
+}
+input[type=radio]:nth-child(3):checked ~ .surface label:nth-child(8) .block-inner:hover .right::after, input[type=radio]:nth-child(3):checked ~ .surface label:nth-child(8) .block-inner:hover .cover {
+  transform: rotateY(-135deg);
+}
+
+input[type=radio]:nth-child(4) ~ .surface label:nth-child(9) .block-inner {
+  animation: returnBook 0.5s linear;
+}
+
+input[type=radio]:nth-child(4):checked ~ .surface {
+  transform: translate(16.6666666667%, 152px) rotateX(80deg) rotateZ(0deg);
+}
+input[type=radio]:nth-child(4):checked ~ .surface label:nth-child(9) .block-inner {
+  animation: viewBook 0.5s 1s linear forwards;
+}
+input[type=radio]:nth-child(4):checked ~ .surface label:nth-child(9) .block-inner:hover .right::after, input[type=radio]:nth-child(4):checked ~ .surface label:nth-child(9) .block-inner:hover .cover {
+  transform: rotateY(-135deg);
+}
+
+input[type=radio]:nth-child(5) ~ .surface label:nth-child(10) .block-inner {
+  animation: returnBook 0.5s linear;
+}
+
+input[type=radio]:nth-child(5):checked ~ .surface {
+  transform: translate(8.3333333333%, 152px) rotateX(80deg) rotateZ(0deg);
+}
+input[type=radio]:nth-child(5):checked ~ .surface label:nth-child(10) .block-inner {
+  animation: viewBook 0.5s 1s linear forwards;
+}
+input[type=radio]:nth-child(5):checked ~ .surface label:nth-child(10) .block-inner:hover .right::after, input[type=radio]:nth-child(5):checked ~ .surface label:nth-child(10) .block-inner:hover .cover {
+  transform: rotateY(-135deg);
+}
+
+input[type=radio]:nth-child(6) ~ .surface label:nth-child(11) .block-inner {
+  animation: returnBook 0.5s linear;
+}
+
+input[type=radio]:nth-child(6):checked ~ .surface {
+  transform: translate(0%, 152px) rotateX(80deg) rotateZ(0deg);
+}
+input[type=radio]:nth-child(6):checked ~ .surface label:nth-child(11) .block-inner {
+  animation: viewBook 0.5s 1s linear forwards;
+}
+input[type=radio]:nth-child(6):checked ~ .surface label:nth-child(11) .block-inner:hover .right::after, input[type=radio]:nth-child(6):checked ~ .surface label:nth-child(11) .block-inner:hover .cover {
+  transform: rotateY(-135deg);
+}
+
+input[type=radio]:nth-child(7) ~ .surface label:nth-child(12) .block-inner {
+  animation: returnBook 0.5s linear;
+}
+
+input[type=radio]:nth-child(7):checked ~ .surface {
+  transform: translate(-8.3333333333%, 152px) rotateX(80deg) rotateZ(0deg);
+}
+input[type=radio]:nth-child(7):checked ~ .surface label:nth-child(12) .block-inner {
+  animation: viewBook 0.5s 1s linear forwards;
+}
+input[type=radio]:nth-child(7):checked ~ .surface label:nth-child(12) .block-inner:hover .right::after, input[type=radio]:nth-child(7):checked ~ .surface label:nth-child(12) .block-inner:hover .cover {
+  transform: rotateY(-135deg);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes viewBook {
+  from {
+    transform: rotateX(-90deg) translateZ(64px) rotateY(0);
+  }
+  50% {
+    transform: rotateX(-90deg) translateZ(240px) rotateY(0);
+  }
+  to {
+    transform: rotateX(-90deg) translateZ(240px) rotateY(-90deg) rotateZ(-10deg) translateZ(-80px);
+  }
+}
+@keyframes returnBook {
+  from {
+    transform: rotateX(-90deg) translateZ(240px) rotateY(-90deg) rotateZ(-10deg) translateZ(-80px);
+  }
+  50% {
+    transform: rotateX(-90deg) translateZ(240px) rotateY(0);
+  }
+  to {
+    transform: rotateX(-90deg) translateZ(16px) rotateY(0);
+  }
+}

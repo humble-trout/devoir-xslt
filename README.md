@@ -2,3 +2,5 @@
 Ce dépôt contient mon devoir final pour le cours de XSLT suivi dans le cadre du M2 TNAH de l'Ecole Nationale des Chartes pendant l'année scolaire 2025-2026.
 
 Ce devoir permet de naviguer à travers le roman épistolaire *Dracula* (1897) de Bram Stoker comme si les entrées de journal intime et lettres qui le composent étaient des publications sur un blog. Seul le premier chapitre est disponible, divisé en trois entrées dans le journal de Jonathan Harker, qui correspondent à trois encodages en XML-TEI. Ces encodages ont été réalisés par moi-même, et leur structure est inspirée par *Encoding Correspondence. A Manual for Encoding Letters and Postcards in TEI-XML and DTABf*, co-écrit par Stefan Dumont, Susanne Haaf and Sabine Seifert, dont le GitHub se trouve [ici](https://github.com/TEI-Correspondence-SIG/encoding-correspondence). La mise en page en HTML et CSS de ce devoir est réalisée d'après le [template gratuit "3D Book Browsing"](https://codepen.io/jkantner/pen/xrRPRL) créé par Jon Kantner.
+
+J'ai utilisé le LLM Gemini pour m'aider à régler des problèmes de responsiveness dans le CSS que je ne parvenais pas à résoudre par moi-même.
