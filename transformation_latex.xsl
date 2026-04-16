@@ -71,7 +71,7 @@
             <xsl:text>\par\vfill\clearpage </xsl:text>
         </xsl:for-each>
         
-        <!--INDEX DES LIEUX MENTIONNES DANS LE TEXTE QUI ONT DES COORDONNEES GEOGRAPHIQUES correspondantes-->
+        <!--INDEX DES LIEUX MENTIONNES DANS LE TEXTE-->
         
         <!--L'usage de &#10; dans cette section est une recommendation d'un LLM pour régler un problème d'indentation-->
         <!--J'ai également utilisé un LLM pour arriver à supprimer les doublons des villes mentionnées dans plus d'une entrée. C'est de ce LLM que vient l'utilisation d'une clé de groupe, j'avais à l'origine fait cet index avec for-each.-->
