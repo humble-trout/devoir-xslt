@@ -5,6 +5,6 @@ Mon devoir est une transformation XSLT vers du LaTeX de trois encodages réalis�
 
 Ce dépôt contient un fichier output.pdf, qui est le résultat de la compilation du fichier output.tex. Afin de reproduire ce fichier sur votre ordinateur, lancez dans le terminal d'Ubuntu la commande suivante : __pdflatex output.tex__. J'ai quelques fois dû lancer deux fois cette commande pour avoir un fichier PDF complet.
 
-J'ai utilisé le LLM Gemini pendant ce devoir, pour corriger certains aspects de mon encodage TEI afin qu'il soit mieux adapté à la transformation et pour m'aider à me débarrasser d'erreurs que je rencontrais pendant la transformation. L'utilisation de ce LLM est signalée au long du document avec des commentaires.
+J'ai utilisé le LLM Gemini pendant ce devoir, pour corriger certains aspects de mon encodage TEI afin qu'il soit mieux adapté à la transformation et pour m'aider à me débarrasser d'erreurs que je rencontrais pendant la transformation. L'utilisation de ce LLM est signalée le long du document transformation_latex.xsl avec des commentaires.
 
 J'inclus, au cas où, la commande utilisée pour effectuer la transformation depuis mon PC : java -cp "saxon-he-12.4.jar:lib/*" net.sf.saxon.Transform -s:3_may.xml -xsl:transformation_latex.xsl -o:output.tex.
