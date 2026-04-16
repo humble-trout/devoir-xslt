@@ -3,8 +3,8 @@ Ce dépôt contient mon devoir final pour le cours de XSLT suivi dans le cadre d
 
 Mon devoir est une transformation XSLT vers du LaTeX de trois encodages réalisés par moi-même à partir du premier chapitre du roman *Dracula* (1897) de Bram Stoker. La structure de ces encodages est inspirée par *Encoding Correspondence. A Manual for Encoding Letters and Postcards in TEI-XML and DTABf*, co-écrit par Stefan Dumont, Susanne Haaf and Sabine Seifert, dont le GitHub se trouve [ici](https://github.com/TEI-Correspondence-SIG/encoding-correspondence).
 
-Ce dépôt contient un fichier output.pdf, qui est le résultat de la compilation du fichier output.tex. Afin de reproduire ce fichier sur votre ordinateur, lancez dans le terminal d'Ubuntu la commande suivante : __pdflatex output.tex__. J'ai quelques fois dû lancer deux fois cette commande pour avoir un fichier PDF complet.
+Ce dépôt contient un fichier *output.pdf*, qui est le résultat de la compilation du fichier *output.tex*. Afin de reproduire ce fichier sur votre ordinateur, lancez dans le terminal d'Ubuntu la commande suivante : __pdflatex output.tex__. 
 
-J'ai utilisé le LLM Gemini pendant ce devoir, pour corriger certains aspects de mon encodage TEI afin qu'il soit mieux adapté à la transformation et pour m'aider à me débarrasser d'erreurs que je rencontrais pendant la transformation. L'utilisation de ce LLM est signalée le long du document transformation_latex.xsl avec des commentaires.
+__Note importante :__ Il faut manifestement lancer deux fois cette dernière commande dans le terminal pour avoir un fichier PDF complet (notamment, la table des matières ne s'affiche qu'au bout de la deuxième fois). Je ne connais pas la raison de ce problème.
 
-J'inclus, au cas où, la commande utilisée pour effectuer la transformation depuis mon PC : java -cp "saxon-he-12.4.jar:lib/*" net.sf.saxon.Transform -s:3_may.xml -xsl:transformation_latex.xsl -o:output.tex.
+J'ai utilisé le LLM Gemini pendant ce devoir, pour corriger certains aspects de mon encodage TEI afin qu'il soit mieux adapté à la transformation, et pour m'aider à me débarrasser d'erreurs que je rencontrais pendant cette transformation. L'utilisation de ce LLM est signalée le long du fichier *transformation_latex.xsl* avec des commentaires.
