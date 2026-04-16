@@ -3,6 +3,7 @@ lib
 saxon
 
 #Fichiers
+.gitignore
 3_may.html
 3_may.tex
 output.aux
