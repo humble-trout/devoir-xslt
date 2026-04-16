@@ -44,13 +44,13 @@
         
         <xsl:variable name="encodeur" select="$docs[1]//titleStmt/respStmt/persName"/>
         <xsl:variable name="note_encodage" select="$docs[1]//titleStmt/respStmt/note"/>
-        <xsl:variable name="editeur" select="$docs[1]//publicationStmt/publisher"/>
+        <xsl:variable name="ecole" select="$docs[1]//publicationStmt/publisher"/>
         
                 <xsl:text>
             \title{\textbf</xsl:text>{<xsl:value-of select="$titre_livre"/><xsl:text> - </xsl:text><xsl:value-of select="$titre_chapitre"/>}<xsl:text>}
             \author{\textbf{Author:} </xsl:text><xsl:value-of select="$nom_auteur"/><xsl:text>}
             \date{\textbf{First published:} </xsl:text><xsl:value-of select="$date_pub"/><xsl:text> \\[2ex]
-                  \textbf{Encoded by:} </xsl:text><xsl:value-of select="$encodeur"/><xsl:text> \\ </xsl:text><xsl:value-of select="$editeur"/><xsl:text> \\
+                  \textbf{Encoded by:} </xsl:text><xsl:value-of select="$encodeur"/><xsl:text> \\ </xsl:text><xsl:value-of select="$ecole"/><xsl:text> \\
                   </xsl:text><xsl:value-of select="$note_encodage"/><xsl:text>
 }
         
