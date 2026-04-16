@@ -156,7 +156,7 @@
         <xsl:text>}\par\medskip</xsl:text>
     </xsl:template>
     
-    <!--SAUTE DES LIGNES ENTRE TOUS LES PARAGRAPHES SAUF CEUX DE LA LETTRE DE DRACULA-->
+    <!--FAIT DE GRANDS SAUTS DE LIGNES ENTRE TOUS LES PARAGRAPHES SAUF CEUX DE LA LETTRE DE DRACULA-->
     
     <xsl:template match="p[not(parent::div[@type='letter'])]">
         <xsl:apply-templates/>
