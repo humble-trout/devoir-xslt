@@ -31,10 +31,9 @@
         
         <!--CREATION DU TITRE DU DOCUMENT-->
         
-        <!--Déclaration de variables utilisées pour gérer mes trois documents source-->
+        <!--Déclaration de variable utilisée pour gérer mes trois documents source-->
         
         <xsl:variable name="docs" select="collection('.?select=*_may.xml')"/>
-        <xsl:variable name="first_doc" select="$docs[1]"/>
         
         <!--Déclaration de variables utilisées pour le titre de mon document-->
         
@@ -133,7 +132,7 @@
             <xsl:value-of select="$date_entree"/>
             <xsl:text> \\ </xsl:text> 
         </xsl:if>
-        <!--Va à la ligne s'il y a d'autres paragraphes dans le sous-titre-->
+        <!--Met un grand espace s'il y a d'autres paragraphes dans le sous-titre-->
         <xsl:for-each select="p">
             <xsl:apply-templates/>
             <xsl:if test="position() != last()">\quad </xsl:if>
@@ -142,14 +141,14 @@
         
         <xsl:text>\\ </xsl:text> 
         
-        <!--Utilise une boucle if avec la condition que la longueur de la date soit supérieur à 0 caractères, autrement une absence de date est indiquée"--> 
+        <!--Utilise une boucle if avec la condition que la longueur de la date soit supérieur à 0 caractères, autrement une absence de date est indiquée--> 
         <xsl:text>Encoded on </xsl:text>
         <xsl:value-of select="if (string-length($date_encodage) > 0) then $date_encodage else '[null]'"/>
         <xsl:text>}</xsl:text>
         <xsl:text>\par\bigskip\noindent </xsl:text>
     </xsl:template>
     
-    <!--ENLEVE LES INDENTATIONS DE LA DATE DE L'ENTREE, MET LE TEXTE EN GRAS ET FAIT UN GRAND SAUT DE LIGNE APRES-->
+    <!--ENLEVE LES INDENTATIONS DE LA DATE DE L'ENTREE, MET LE TEXTE EN GRAS ET FAIT UN SAUT DE LIGNE APRES-->
     
     <xsl:template match="dateline">
         <xsl:text>\noindent\textbf{</xsl:text>
@@ -174,7 +173,7 @@
     
     <!--MOTS EN LANGUES ETRANGERES-->
     
-    <!--Faire en sorte que le nom de la langue apparaisse en parenthèses a été difficile, j'ai eu recours à un LLM qui a suggéré d'utiliser choose puis test au lieu de simplement test-->
+    <!--Faire en sorte que le nom de la langue apparaisse en parenthèses a été difficile, j'ai eu recours à un LLM qui a suggéré d'utiliser choose puis test au lieu de simplement test, comme je l'avais initialement fait-->
         
     <xsl:template match="mentioned">
         <!--Définit une variable avec le code en deux lettres de la langue-->
@@ -211,7 +210,8 @@
     </xsl:template>
     
     <!--REMPLACE L'AMPERSAND PAR UNE SUITE DE CARACTERES QUI NE FERA PAS PLANTER LATEX-->
-    <!--Suggestion d'un LLM après plusieurs problèmes rencontrés-->
+    <!--Suggestion d'un LLM après un problème rencontré quand j'ai compilé depuis le terminal-->
+    <!-- Etait censé régler un problème avec le nom de la maison d'édition du livre scanné par le Projet Gutenberg, finalement je n'ai pas inclus ce nom sur la page de titre donc j'ai ajouté un ampersand dans l'encodage du 4 mai pour que ça fonctionne quand même -->
     
     <xsl:template match="text()">
         <xsl:value-of select="replace(., '&amp;', '\\&amp;')"/>
