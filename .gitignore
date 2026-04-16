@@ -1,0 +1,12 @@
+#Dossiers
+lib
+saxon
+
+#Fichiers
+3_may.html
+3_may.tex
+output.aux
+output.log
+output.out
+output.toc
+saxon-he-12.4.jar

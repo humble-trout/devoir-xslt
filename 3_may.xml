@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="transformation_latex.xsl"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0">
 	<teiHeader>
 		<fileDesc>
 			<titleStmt>
-				<title>Blogula - A YK2 Dracula blog</title>
+				<title>Jonathan Harker’s Journal: 3 May</title>
 				
 				<respStmt>
 					<resp>created and encoded by</resp>
-					<persName>Béatrice Pascale</persName>
+					<persName>Beatrice Pascale</persName>
 					<note>Sample encoding done in the context of an assignment for the XSLT class of the M2 TNAH.</note>
 				</respStmt>
 				
@@ -16,10 +17,10 @@
 			<publicationStmt>
 				<publisher>Ecole nationale des Chartes</publisher>
 				<pubPlace> 65, Rue de Richelieu, <placeName>Paris</placeName></pubPlace>
-				<date when="2026-04"/>
+				<date when="2026-04-01"/>
 				
 			</publicationStmt>
-			
+						
 			<sourceDesc>
 				<bibl>
 					<title>Dracula</title>
@@ -32,11 +33,134 @@
 				</bibl>
 				
 				<listPerson>
-					<person></person>
+					<person xml:id="JHarker">
+						<persName>Jonathan Harker</persName>
+					</person>
+					<person xml:id="CDracula">
+						<persName>Count Dracula</persName>
+					</person>
+					<person xml:id="MMurray">
+						<persName>Mina Murray</persName>
+					</person>
 				</listPerson>
-				
+							
 				<listPlace>
-					<place></place>
+					<place xml:id="Munich">
+						<placeName>Munich</placeName>
+						<location>
+							<geo>48.1351 11.5820</geo>
+							<country>Germany</country>
+						</location>
+					</place>
+					<place xml:id="Vienna">
+						<placeName>Vienna</placeName>
+						<location>
+							<geo>48.2082 16.3738</geo>
+							<country>Austria</country>
+						</location>
+					</place>
+					<place xml:id="Buda-Pesth">
+						<placeName>Buda-Pesth</placeName>
+						<location>
+							<geo>47.4979 19.0402</geo>
+							<country>Hungary</country>
+						</location>
+					</place>
+					<place xml:id="Danube">
+						<placeName>Danube River</placeName>
+						<location>
+							<geo>45.2220 29.7431</geo>
+							<country>Romania</country> </location>
+					</place>
+					<place xml:id="Klausenburgh">
+						<placeName>Klausenburgh (Cluj-Napoca)</placeName>
+						<location>
+							<geo>46.7712 23.6236</geo>
+							<country>Romania</country>
+						</location>
+					</place>
+					<place xml:id="HotelRoyale">
+						<placeName>Hotel Royale</placeName>
+						<location>
+							<country>United Kingdom</country> </location>
+					</place>
+					<place xml:id="London">
+						<placeName>London</placeName>
+						<location>
+							<geo>51.5074 -0.1278</geo>
+							<country>United Kingdom</country>
+						</location>
+					</place>
+					<place xml:id="BritishMuseum">
+						<placeName>British Museum</placeName>
+						<location>
+							<geo>51.5194 -0.1270</geo>
+							<country>United Kingdom</country>
+						</location>
+					</place>
+					<place xml:id="Transylvania">
+						<placeName>Transylvania</placeName>
+						<location>
+							<geo>46.5000 24.5000</geo>
+							<country>Romania</country>
+						</location>
+					</place>
+					<place xml:id="Moldavia">
+						<placeName>Moldavia</placeName>
+						<location>
+							<geo>47.0000 27.0000</geo>
+							<country>Romania</country> </location>
+					</place>
+					<place xml:id="Bukovina">
+						<placeName>Bukovina</placeName>
+						<location>
+							<geo>48.0000 26.0000</geo>
+							<country>Ukraine/Romania</country>
+						</location>
+					</place>
+					<place xml:id="Carpathians">
+						<placeName>Carpathian Mountains</placeName>
+						<location>
+							<geo>47.0000 25.5000</geo>
+							<country>Romania</country>
+						</location>
+					</place>
+					<place xml:id="Bistritz">
+						<placeName>Bistritz (Bistrița)</placeName>
+						<location>
+							<geo>47.1333 24.5000</geo>
+							<country>Romania</country>
+						</location>
+					</place>
+					<place xml:id="BorgoPass">
+						<placeName>Borgo Pass (Tihuța Pass)</placeName>
+						<location>
+							<geo>47.2667 25.0167</geo>
+							<country>Romania</country>
+						</location>
+					</place>
+					<place xml:id="CastleDracula">
+						<placeName>Castle Dracula</placeName>
+						<location>
+							<country>Romania</country>
+						</location>
+					</place>
+					<place xml:id="China">
+						<placeName>China</placeName>
+					</place>
+					<place xml:id="France">
+						<placeName>France</placeName>
+
+					</place>
+					<place xml:id="Germany">
+						<placeName>Germany</placeName>
+					</place>
+					<place xml:id="GoldenKrone">
+						<placeName>Golden Krone Hotel</placeName>
+						<location>
+							<country>Romania</country>
+						</location>
+					</place>
 				</listPlace>
 				
 			</sourceDesc>
@@ -50,63 +174,42 @@
 			<div type="header">
 				<head type="chapter_title">Chapter 1</head>
 				<div xml:id="chapter_subtitle">
-					<p n="1"><persName ref="jonathan_001">Jonathan Harker</persName>'s Journal</p>
-					<!--Mettre en italique lors de la transformation-->
+					<p n="1"><persName ref="#JHarker">Jonathan Harker</persName>'s Journal</p>
 					<p n="2">(Kept in shorthand.)</p>
 				</div>
 			</div>
 
 			<div type="entry" xml:id="ch1-e1">
-				<dateline> 3 May. <placeName>Bistritz</placeName></dateline>
+				<dateline>3 May. <placeName ref="#Bistritz">Bistritz</placeName></dateline>
 				
-				<p n="1">Left Munich at 8:35 P. M., on <date>1st May</date>, arriving at <placeName>Vienna</placeName> 
-					early next morning; should have arrived at 6:46, but train was an hour late. 
-					<placeName>Buda-Pesth</placeName> seems a wonderful place, from the glimpse which I got of it 
-					from the train and the little I could walk through the streets. I feared to go very far from 
-					the station, as we had arrived late and would start as near the correct time as possible. 
-					The impression I had was that we were leaving the West and entering the East; the most western 
-					of splendid bridges over the <geogName>Danube</geogName>, which is here of noble width and depth,
-					took us among the traditions of Turkish rule.</p>
+				<p n="1">—Left <placeName ref="#Munich">Munich</placeName> at 8:35 P. M., on <date when="1893-05-01">1st May</date>, arriving at <placeName ref="#Vienna">Vienna</placeName> early next morning; should have arrived at 6:46, but train was an hour late. <placeName ref="#Buda-Pesth">Buda-Pesth</placeName> seems a wonderful place, from the glimpse which I got of it from the train and the little I could walk through the streets. I feared to go very far from the station, as we had arrived late and would start as near the correct time as possible. The impression I had was that we were leaving the West and entering the East; the most western of splendid bridges over the <placeName ref="#Danube">Danube</placeName>, which is here of noble width and depth, took us among the traditions of <rs type="historical">Turkish rule</rs>.</p>
 				
+				<p n="2">We left in pretty good time, and came after nightfall to <placeName ref="#Klausenburgh">Klausenburgh</placeName>. Here I stopped for the night at the <placeName ref="#HotelRoyale">Hotel Royale</placeName>. I had for dinner, or rather supper, a chicken done up some way with red pepper, which was very good but thirsty. <note type="memo">(Mem., get recipe for <persName ref="#MMurray">Mina</persName>.)</note> I asked the waiter, and he said it was called <mentioned xml:lang="hu">“paprika hendl,”</mentioned> and that, as it was a national dish, I should be able to get it anywhere along the <placeName ref="#Carpathians">Carpathians</placeName>. I found my smattering of <lang xml:lang="de">German</lang> very useful here; indeed, I don’t know how I should be able to get on without it.</p>
 				
-				<p n="2">We left in pretty good time, and came after nightfall to <placeName>Klausenburgh</placeName>. Here I stopped for 
-					the night at the Hotel Royale. I had for dinner, or rather supper, a chicken done up some way 
-					with red pepper, which was very good but thirsty. (Mem., get recipe for <persName ref="mina_001">Mina</persName>.) I asked the waiter,
-					and he said it was called “paprika hendl,” and that, as it was a national dish, I should be able 
-					to get it anywhere along <geogName>the Carpathians</geogName>. I found my smattering of <lang>German</lang> very useful here; indeed,
-					I don’t know how I should be able to get on without it.</p>
+				<p n="3">Having had some time at my disposal when in <placeName ref="#London">London</placeName>, I had visited the <placeName ref="#BritishMuseum">British Museum</placeName>, and made search among the books and maps in the library regarding <placeName ref="#Transylvania">Transylvania</placeName>; it had struck me that some foreknowledge of the country could hardly fail to have some importance in dealing with a nobleman of that country. I find that the district he named is in the extreme east of the country, just on the borders of three states, <placeName ref="#Transylvania">Transylvania</placeName>, <placeName ref="#Moldavia">Moldavia</placeName> and <placeName ref="#Bukovina">Bukovina</placeName>, in the midst of the <placeName ref="#Carpathians">Carpathian mountains</placeName>; one of the wildest and least known portions of Europe. I was not able to light on any map or work giving the exact locality of the <placeName ref="#CastleDracula">Castle Dracula</placeName>, as there are no maps of this country as yet to compare with our own <rs type="org">Ordnance Survey</rs> maps; but I found that <placeName ref="#Bistritz">Bistritz</placeName>, the post town named by <persName ref="#CDracula">Count Dracula</persName>, is a fairly well-known place. I shall enter here some of my notes, as they may refresh my memory when I talk over my travels with <persName ref="#MMurray">Mina</persName>.</p>
 				
-				<p n="3">Having had some time at my disposal when in <placeName>London</placeName>, I had visited the <placeName>British Museum</placeName>,
-					and made search among the books and maps in the library regarding <placeName>Transylvania</placeName>; 
-					it had struck me that some foreknowledge of the country could hardly fail to have 
-					some importance in dealing with a nobleman of that country. I find that the district he 
-					named is in the extreme east of the country, just on the borders of three states, <placeName>Transylvania</placeName>, 
-					<placeName>Moldavia</placeName> and <placeName>Bukovina</placeName>, in the midst of <geogName>the Carpathian mountains</geogName>; 
-					one of the wildest and least known portions of <placeName>Europe</placeName>. I was not able to light on any map or 
-					work giving the exact locality of the <placeName>Castle Dracula</placeName>, as there are no maps of this country as
-					yet to compare with our own Ordnance Survey maps; but I found that <placeName>Bistritz</placeName>, the post town named
-					by <persName ref="dracula_001">Count Dracula</persName>, is a fairly well-known place. I shall enter here some of my notes, as they may 
-					refresh my memory when I talk over my travels with <persName ref="mina_001">Mina</persName>.</p>
+				<p n="4">In the population of <placeName ref="#Transylvania">Transylvania</placeName> there are four distinct nationalities: <rs type="ethnic">Saxons</rs> in the South, and mixed with them the <rs type="ethnic">Wallachs</rs>, who are the descendants of the <rs type="ethnic">Dacians</rs>; <rs type="ethnic">Magyars</rs> in the West, and <rs type="ethnic">Szekelys</rs> in the East and North. I am going among the latter, who claim to be descended from <persName>Attila</persName> and the <rs type="ethnic">Huns</rs>. This may be so, for when the <rs type="ethnic">Magyars</rs> conquered the country in the eleventh century they found the <rs type="ethnic">Huns</rs> settled in it. I read that every known superstition in the world is gathered into the horseshoe of the <placeName ref="#Carpathians">Carpathians</placeName>, as if it were the centre of some sort of imaginative whirlpool; if so my stay may be very interesting. <note type="memo">(Mem., I must ask the Count all about them.)</note></p>
 				
-				<p n="4">In the population of <placeName>Transylvania</placeName> there are four distinct nationalities: Saxons in the South, and mixed 
-					with them the Wallachs, who are the descendants of the Dacians; Magyars in the West, and Szekelys in the East 
-					and North. I am going among the latter, who claim to be descended from Attila and the Huns. This may be so, 
-					for when the Magyars conquered the country in the eleventh century they found the Huns settled in it. 
-					I read that every known superstition in the world is gathered into the horseshoe of the Carpathians, 
-					as if it were the centre of some sort of imaginative whirlpool; if so my stay may be very interesting. 
-					(Mem., I must ask the Count all about them.)</p>
+				<p n="5">I did not sleep well, though my bed was comfortable enough, for I had all sorts of queer dreams. There was a dog howling all night under my window, which may have had something to do with it; or it may have been the paprika, for I had to drink up all the water in my carafe, and was still thirsty. Towards morning I slept and was wakened by the continuous knocking at my door, so I guess I must have been sleeping soundly then.</p>
 				
-				<closer>
-					<salute>I am with all my Heart<lb/>Dear Friend<lb/>Yours most
-						faithfully</salute>
-					<signed>Werlhof</signed>
-					<address>
-						<addrLine>à Monsieur</addrLine>
-						<addrLine>Monsieur Haller</addrLine>
-						<addrLine>conseiller aulique et<lb/>professeur roïal</addrLine>
-						<addrLine>à<lb/>Göttingen</addrLine>
-					</address>
-				</closer>
+				<p n="6">I had for breakfast more paprika, and a sort of porridge of maize flour which they said was <mentioned xml:lang="ro">“mamaliga,”</mentioned> and egg-plant stuffed with forcemeat, a very excellent dish, which they call <mentioned xml:lang="ro">“impletata.”</mentioned> <note type="memo">(Mem., get recipe for this also.)</note> I had to hurry breakfast, for the train started a little before eight, or rather it ought to have done so, for after rushing to the station at 7:30 I had to sit in the carriage for more than an hour before we began to move. It seems to me that the further east you go the more unpunctual are the trains. What ought they to be in <placeName ref="#China">China</placeName>?</p>
+				
+				<p n="7">All day long we seemed to dawdle through a country which was full of beauty of every kind. Sometimes we saw little towns or castles on the top of steep hills such as we see in old missals; sometimes we ran by rivers and streams which seemed from the wide stony margin on each side of them to be subject to great floods. It takes a lot of water, and running strong, to sweep the outside edge of a river clear. At every station there were groups of people, sometimes crowds, and in all sorts of attire. Some of them were just like the peasants at home or those I saw coming through <placeName ref="#France">France</placeName> and <placeName ref="#Germany">Germany</placeName>, with short jackets and round hats and home-made trousers; but others were very picturesque. The women looked pretty, except when you got near them, but they were very clumsy about the waist. They had all full white sleeves of some kind or other, and most of them had big belts with a lot of strips of something fluttering from them like the dresses in a ballet, but of course there were petticoats under them. The strangest figures we saw were the <rs type="ethnic">Slovaks</rs>, who were more barbarian than the rest, with their big cow-boy hats, great baggy dirty-white trousers, white linen shirts, and enormous heavy leather belts, nearly a foot wide, all studded over with brass nails. They wore high boots, with their trousers tucked into them, and had long black hair and heavy black moustaches. They are very picturesque, but do not look prepossessing. On the stage they would be set down at once as some old Oriental band of brigands. They are, however, I am told, very harmless and rather wanting in natural self-assertion.</p>
+				
+				<p n="8">It was on the dark side of twilight when we got to <placeName ref="#Bistritz">Bistritz</placeName>, which is a very interesting old place. Being practically on the frontier—for the <placeName ref="#BorgoPass">Borgo Pass</placeName> leads from it into <placeName ref="#Bukovina">Bukovina</placeName>—it has had a very stormy existence, and it certainly shows marks of it. Fifty years ago a series of great fires took place, which made terrible havoc on five separate occasions. At the very beginning of the seventeenth century it underwent a siege of three weeks and lost 13,000 people, the casualties of war proper being assisted by famine and disease.</p>
+				
+				<p n="9"><persName ref="#CDracula">Count Dracula</persName> had directed me to go to the <placeName ref="#GoldenKrone">Golden Krone Hotel</placeName>, which I found, to my great delight, to be thoroughly old-fashioned, for of course I wanted to see all I could of the ways of the country. I was evidently expected, for when I got near the door I faced a cheery-looking elderly woman in the usual peasant dress—white undergarment with long double apron, front, and back, of coloured stuff fitting almost too tight for modesty. When I came close she bowed and said, “The <mentioned xml:lang="de">Herr</mentioned> Englishman?” “Yes,” I said, “<persName ref="#JHarker">Jonathan Harker</persName>.” She smiled, and gave some message to an elderly man in white shirt-sleeves, who had followed her to the door. He went, but immediately returned with a letter:—</p>
+				
+				<div type="letter">
+					<opener>
+						<salute>My Friend.—</salute>
+					</opener>
+					<p>Welcome to the <placeName ref="#Carpathians">Carpathians</placeName>. I am anxiously expecting you. Sleep well to-night. At three to-morrow the diligence will start for <placeName ref="#Bukovina">Bukovina</placeName>; a place on it is kept for you. At the <placeName ref="#BorgoPass">Borgo Pass</placeName> my carriage will await you and will bring you to me. I trust that your journey from <placeName ref="#London">London</placeName> has been a happy one, and that you will enjoy your stay in my beautiful land.</p>
+					<closer>
+						<salute>Your friend,</salute>
+						<signed><persName ref="#CDracula">Dracula</persName></signed>
+					</closer>
+				</div>
 			</div>
 
 
