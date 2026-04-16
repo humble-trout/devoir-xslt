@@ -174,8 +174,8 @@
     <!--MOTS EN LANGUES ETRANGERES-->
     
     <!--Faire en sorte que le nom de la langue apparaisse en parenthèses a été difficile, j'ai eu recours à un LLM qui a suggéré d'utiliser choose puis test au lieu de simplement test, comme je l'avais initialement fait-->
-        
-    <xsl:template match="mentioned">
+    
+    <xsl:template match="foreign">
         <!--Définit une variable avec le code en deux lettres de la langue-->
         <xsl:variable name="code_langue" select="@xml:lang"/>
         
