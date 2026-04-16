@@ -132,10 +132,10 @@
             <xsl:value-of select="$date_entree"/>
             <xsl:text> \\ </xsl:text> 
         </xsl:if>
-        <!--Met un grand espace s'il y a d'autres paragraphes dans le sous-titre-->
+        <!--Va à la ligne s'il y a d'autres paragraphes dans le sous-titre-->
         <xsl:for-each select="p">
             <xsl:apply-templates/>
-            <xsl:if test="position() != last()">\quad </xsl:if>
+            <xsl:if test="position() != last()">\newline </xsl:if>
         </xsl:for-each>
         <xsl:text>}</xsl:text>
         

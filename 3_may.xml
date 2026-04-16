@@ -7,9 +7,9 @@
 				<title>Jonathan Harker’s Journal: 3 May</title>
 				
 				<respStmt>
-					<resp>created and encoded by</resp>
+					<resp>encoded by</resp>
 					<persName>Beatrice Pascale</persName>
-					<note>Sample encoding done in the context of an assignment for the XSLT class of the M2 TNAH.</note>
+					<note>Encoding and transformation done in the context of an assignment for the XSLT class of the M2 TNAH.</note>
 				</respStmt>
 				
 			</titleStmt>
@@ -180,7 +180,7 @@
 			</div>
 
 			<div type="entry" xml:id="ch1-e1">
-				<dateline>3 May. <placeName ref="#Bistritz">Bistritz</placeName></dateline>
+				<dateline><date when="1893-05-03">3 May</date>. <placeName ref="#Bistritz">Bistritz</placeName>.</dateline>
 				
 				<p n="1">—Left <placeName ref="#Munich">Munich</placeName> at 8:35 P. M., on <date when="1893-05-01">1st May</date>, arriving at <placeName ref="#Vienna">Vienna</placeName> early next morning; should have arrived at 6:46, but train was an hour late. <placeName ref="#Buda-Pesth">Buda-Pesth</placeName> seems a wonderful place, from the glimpse which I got of it from the train and the little I could walk through the streets. I feared to go very far from the station, as we had arrived late and would start as near the correct time as possible. The impression I had was that we were leaving the West and entering the East; the most western of splendid bridges over the <placeName ref="#Danube">Danube</placeName>, which is here of noble width and depth, took us among the traditions of <rs type="historical">Turkish rule</rs>.</p>
 				
